@@ -6,9 +6,9 @@
 **My role:** News crawling, news summarisation, YouTube opinion mining, and API/data integration  
 **Type:** Software development bootcamp team capstone
 
-[Watch the demo](https://www.youtube.com/watch?v=Bk_dYeuUDCE) · [Original team repository](https://github.com/yooseungmin9/dgict-teamb) · [My API integration commit](https://github.com/yooseungmin9/dgict-teamb/commit/9149bc578f1225736668d12ebc05f8832da4a9e4)
+[Watch the project demo](https://www.youtube.com/watch?v=Bk_dYeuUDCE) · [Browse the source code](./fast_api) · [Spring Boot application](./news)
 
-> **Portfolio note:** This repository is an English-language case study of my contributions to a collaborative project. The original source code remains in the team repository. This portfolio is **documentation-only**, not a standalone runnable application.
+> **Portfolio note:** This repository contains a **sanitised source-code snapshot** of our five-person bootcamp project, published with the team’s permission. Credentials, local research datasets and large trained-model artifacts have been removed. Some features require external services, credentials and models, so this snapshot is **not verified as runnable end-to-end**.
 
 ## Project overview
 
@@ -37,7 +37,7 @@ These were **team features**, not features I built entirely on my own.
 - Implemented a proof-of-concept **Spring Boot** controller using **WebClient** to fetch data from FastAPI.
 - Connected the response to a webpage using JavaScript **fetch()** and **Chart.js** to visualise keyword trends.
 
-**Evidence:** [My MongoDB → FastAPI → Spring Boot → Chart.js integration commit](https://github.com/yooseungmin9/dgict-teamb/commit/9149bc578f1225736668d12ebc05f8832da4a9e4).
+**Code examples in this repository:** [News crawler](./fast_api/collect/news_clawler.py), [FastAPI analysis endpoints](./fast_api/analysis/opinion_mining.py), [Spring Boot API integration](./news/src/main/java/com/bgroup/news/analysis/service/AnalysisGateway.java), and [JavaScript frontend](./news/src/main/resources/static/js).
 
 ### 3. News summaries and opinion mining
 
@@ -45,7 +45,7 @@ These were **team features**, not features I built entirely on my own.
 - Worked on YouTube opinion-mining functionality, including Korean text tokenisation and stopword filtering.
 - Investigated data flow and frontend display issues while integrating features with the rest of the team.
 
-The original team's [README](https://github.com/yooseungmin9/dgict-teamb/blob/main/README.md) lists my responsibilities under **장성진**.
+The original team documentation lists my primary responsibilities as news crawling, news summarisation and YouTube opinion mining.
 
 ## System architecture
 
@@ -94,17 +94,25 @@ This particular end-to-end integration was a **prototype**, not a claim of produ
 - Debugging problems across collection, data storage, APIs, and rendering
 - Collaborating on a multi-module web application with a five-person team
 
-## Demo and source-code evidence
+## Demo and source code
 
 - **Demo video:** https://www.youtube.com/watch?v=Bk_dYeuUDCE
-- **Original team source:** https://github.com/yooseungmin9/dgict-teamb
-- **My API integration commit:** https://github.com/yooseungmin9/dgict-teamb/commit/9149bc578f1225736668d12ebc05f8832da4a9e4
-- **Team role allocation:** https://github.com/yooseungmin9/dgict-teamb/blob/main/README.md
+- **Python APIs and collection:** [fast_api/](./fast_api)
+- **Spring Boot backend and web UI:** [news/](./news)
+- **Public-source safety notes:** [SECURITY_NOTES.md](./SECURITY_NOTES.md)
+
+### Configuration notes
+
+Python services expect environment variables for database and external API access. See [.env.example](./.env.example). Some modules call `load_dotenv()`; other modules require variables exported in the shell or provided by the process manager. Spring Boot also reads `MONGO_URI` from its environment. Use **newly issued credentials** only; do not reuse credentials from the original project.
+
+**Running the full application:** Each Python service may require a different virtual environment and start command. The Java app is under `news/`. The repository does not include private data, downloaded models, external cloud services or an automated end-to-end test; please treat this as a code portfolio rather than a plug-and-play deployment.
 
 ## Credits and scope
 
-**SUMMARIX was developed by five team members.** This README distinguishes my individual contributions from features implemented by teammates. It does not reproduce the original source files or any application credentials.
+**SUMMARIX was developed by five team members.** This README distinguishes my individual contributions from features implemented by teammates. The source code has been republished with team consent and without application credentials or the original Git commit history.
 
 ---
 
 **Seongjin Jang** · [LinkedIn](https://www.linkedin.com/in/seongjin-jang-87815b359)
+
+> **Security:** Keys exposed in the original team repository must be rotated or revoked. Publishing this clean snapshot does not remove secrets from the original repository history.
